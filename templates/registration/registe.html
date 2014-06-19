@@ -1,0 +1,24 @@
+{%extends "base.html" %}
+{% block title %}
+<div id="sign-in" class="ui-roundedbox">
+<div class="ui-roundedbox-corner ui-roundedbox-tl">
+<div class="ui-roundedbox-corner ui-roundedbox-tr">
+<div class="ui-roundedbox-corner ui-roundedbox-bl">
+<div class="ui-roundedbox-corner ui-roundedbox-br">
+<div class="ui-roundedbox-content"> 
+<h2>用户注册</h2>
+{% endblock %}
+{% block content %}
+<form method="post",action="." id="register" class="vf lf">
+<p><label class="label_input" for="id_username">用户名:</label>
+{{ form.username}}</p>
+<p><label class="label_input" for="id_email">邮箱：</label>
+{{ form.email}}</p>
+<p><label class="label_input" for="id_password">密码：</label>
+{{ form.password1 }}</p>
+<p><label class="label_input" for="id_password">确认密码：</label>
+{{ form.password2 }}</p>
+<input type="submit" value="registe" class="formbutton"/>
+</form>
+</div></div></div></div></div></div> </div>
+{% endblock %}

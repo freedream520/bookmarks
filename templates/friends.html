@@ -1,0 +1,25 @@
+ 
+{% extends "base.html" %}
+{% block title %}
+<div id="sign-in" class="ui-roundedbox">
+<div class="ui-roundedbox-corner ui-roundedbox-tl">
+<div class="ui-roundedbox-corner ui-roundedbox-tr">
+<div class="ui-roundedbox-corner ui-roundedbox-bl">
+<div class="ui-roundedbox-corner ui-roundedbox-br">
+<div class="ui-roundedbox-content"> 
+<h2>{{ username }}'Friend List</h2>{% endblock %}
+{% block content %}
+  {% if friends %}
+    <ul class="friends">
+      {% for friend in friends %}
+        <strong><a href="/user/{{ friend.username }}/">{{ friend.username }}</strong></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <strong>No friends found.</strong>
+  {% endif %}
+
+  <h2>Latest Friend Bookmarks</h2>
+  {% include "bookmark_list.html" %}
+  </div></div></div></div></div></div> </div>
+{% endblock %}

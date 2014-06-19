@@ -1,0 +1,124 @@
+body {
+    background:#ACDAE5 url(/img/bg/0.png) no-repeat 0 0;
+    color:#222;
+    font-size:12px;
+    line-height:150%;
+}
+
+#navigation{
+    float:right;
+    margin-top:7px;
+    margin-right:-10px;
+}
+
+.ui-roundedbox{
+}
+
+*{
+    margin:0;
+    padding:0;
+    font-family: Tahoma,Helvetica,sans-serif;
+}
+
+div{
+    display:block;
+}
+
+.ui-roundedbox-tl {
+    background-position: 0 0;
+    margin: 0 10px 10px 0;
+    top: 0;
+    left: 0;
+}
+.ui-roundedbox-corner {
+    position: relative;
+    background: url(http://static2.fanfou.com/img/radius.png) no-repeat;
+    background-image: url(http://static1.fanfou.com/img/radius.gif);
+}
+
+.ui-roundedbox-tr {
+background-position: 100% 0;
+top: 0;
+right: -10px;
+}
+
+.ui-roundedbox-bl {
+background-position: 0 100%;
+bottom: -10px;
+left: -10px;
+}
+.ui-roundedbox-br {
+background-position: 100% 100%;
+bottom: 0;
+right: -10px;
+}
+
+#navigation div {
+float: left;
+}
+
+#navigation .ui-roundedbox-content {
+height: 25px;
+padding: 0 5px 0 3px;
+font-size: 14px;
+line-height: 25px;
+white-space: nowrap;
+}
+
+.ui-roundedbox-content {
+position: relative;
+left: -5px;
+top: -5px;
+background: white;
+}
+
+#navigation ul {
+float: left;
+list-style: none;
+}
+
+ul, menu, dir {
+display: block;
+list-style-type: disc;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+
+#navigation li{
+float:left;
+}
+
+li {
+display: list-item;
+}
+
+.beforelogin #header h1 {
+width: 203px;
+}
+.narrowlook #header h1 {
+width: 91px;
+overflow: hidden;
+}
+
+#header h1{
+float: left;
+width: 203px;
+}
+
+h1 {
+display: block;
+font-size: 2em;
+margin: 0.67em 0px;
+font-weight: bold;
+}
+
+#container {
+width: 775px;
+margin: 0 auto;
+}
+
+
+

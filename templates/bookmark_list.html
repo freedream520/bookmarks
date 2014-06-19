@@ -1,0 +1,73 @@
+<style type="text/css">
+#li-f{
+height:22px;
+margin-left:1.3cm;
+font-size:24px;
+}
+
+#li-i {
+border-bottom:1px dashed #cccccc;    
+margin-left:1.3cm;
+margin-right:55px;     
+font-size:24px;
+height:30px;  
+}
+strong{
+height:22px;
+margin-left:1.3cm;
+font-size:24px;
+}
+#shux{
+height:22px;
+margin-left:1.3cm;
+font-size:16px;
+}
+#info{
+margin-left:1.3cm;
+}
+<!--.nos ul{
+list-style:none;
+}-->
+</style>
+<div class="nos">
+{% if bookmarks %}
+<ul class="bookmarks">
+{% for bookmark in bookmarks %}
+<strong>
+<a href="{{bookmark.link.url}}" class="title">
+{{bookmark.title}}</a>
+{% if show_edit%}
+<a href="/save/?url={{ bookmark.link.url|urlencode }}" class="edit">
+<img class="like_in" title="edit " src="/media/img/edit.gif"></a>
+<a href="/delete/?id={{bookmark.id}}" class="delete">
+</a>
+{% endif %}
+</strong>
+{% if show_tags %}
+{% if bookmark.tag_set.all %}
+<ul class="tags">
+<div id="shux" >tags:
+{% for tag in bookmark.tag_set.all %}
+<a href="/tag/{{tag.content}}">{{tag.content}}</a>
+{% endfor%}
+</div>
+</ul>
+{%else%}
+None
+{% endif %}
+{%endif%}
+<div id="shux">
+{% if show_user %}
+Posted by:
+<a href="/user/{{bookmark.uname.username}}/" class="username">
+{{bookmark.uname.username}}</a>
+{% endif %}
+</div>
+<div id="li-i" style="border-top:1px  ;height: 1px;overflow:hidden"></div>
+{% endfor%}
+</ul>
+{% else%}
+<strong>No bookmark found.</strong>
+{% endif %}
+</div>
+

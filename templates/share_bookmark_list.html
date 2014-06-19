@@ -1,0 +1,60 @@
+<style type="text/css">
+#li-i {
+border-bottom:1px dashed #cccccc;    
+margin-left:1.3cm;
+margin-right:55px;     
+font-size:15px;
+height:30px;  
+}
+strong{
+margin-left:1.3cm;
+margin-right:22px;
+font-size:24px;
+height:22px;
+}
+#shux{
+height:22px;
+margin-left:1.3cm;
+font-size:16px;
+}
+</style>
+{% if shares %}
+<ul class="bookmarks">
+{% for share in shares %}
+<strong>
+<a href="/store/?id={{share.id}}">
+<img height="18" width="18" class="like_in" title="star" src="/media/img/star.png"></a>
+<a href="{{share.bookmark.link.url}}" class="title">
+{{share.bookmark.title}}</a>
+<a href="/vote/?id={{share.id}}">
+<img class="like_in" title="like it! " src="/media/img/like.gif"></a>
+<!--<a href="/bookmark/{{share.id}}">
+<img height="18" width="18" class="comments" title="comment" src="/media/img/com.gif"></a>-->
+</strong>
+{% if show_tags %}
+{% if share.bookmark.tag_set.all %}
+<ul class="tags">
+<div id="shux">tags:
+{% for tag in share.bookmark.tag_set.all %}
+<a href="/tag/{{tag.content}}">{{tag.content}}</a>
+{% endfor%}
+</div>
+</ul>
+{%else%}
+None
+{% endif %}
+{%endif%}
+{% if show_user %}
+<div id="shux">Posted by:
+<a href="/user/{{share.bookmark.uname.username}}/" class="username">
+{{share.bookmark.uname.username}}</a>
+{% endif %}
+<img class="like_in" title="votes " src="/media/img/vote.gif"></a>
+{{share.votes}}</div>
+<div id="li-i" style="border-top:1px  ;height: 1px;overflow:hidden"></div>
+{% endfor%}
+</ul>
+{% else%}
+<strong>No bookmark found.</strong>
+{% endif %}
+

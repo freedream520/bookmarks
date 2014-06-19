@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{%block title%}
+<div id="sign-in" class="ui-roundedbox">
+<div class="ui-roundedbox-corner ui-roundedbox-tl">
+<div class="ui-roundedbox-corner ui-roundedbox-tr">
+<div class="ui-roundedbox-corner ui-roundedbox-bl">
+<div class="ui-roundedbox-corner ui-roundedbox-br">
+<div class="ui-roundedbox-content"> 
+<h2>书签搜索</h2>
+{% endblock%}
+{%block external%}
+<script type="text/javascript" src="/media/search.js">
+</script>
+{%endblock%}
+{%block content%} 
+<style type="text/css">
+#search-form{margin-left:1.3cm;}
+</style>
+<form id="search-form" method="get" action="." class="vf lf" >
+{{form.as_p}}
+<input type="submit" value="search" class="formbutton"/ >
+</form>
+<div id="search-results">
+{%if show_result%}
+{% include "bookmark_list.html" %}
+{%endif%}
+</div>
+</div></div></div></div></div> </div>
+{%endblock%}

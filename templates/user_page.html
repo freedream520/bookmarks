@@ -1,0 +1,37 @@
+ 
+{% extends "base.html"%}
+{% block external%}
+<script type="text/javascript" src="/media/bk.js">
+</script>
+{% endblock%}
+{%block title%}<div id="sign-in" class="ui-roundedbox">
+<div class="ui-roundedbox-corner ui-roundedbox-tl">
+<div class="ui-roundedbox-corner ui-roundedbox-tr">
+<div class="ui-roundedbox-corner ui-roundedbox-bl">
+<div class="ui-roundedbox-corner ui-roundedbox-br">
+<div class="ui-roundedbox-content"> 
+{% endblock%}
+{%block content%}
+<div id="info">
+<div id="avatar">
+<a href="/user/{{user.username}}" title="">
+<img src="/media/img/touxiang.png" alt="" title="" /></a>
+</div>
+<div id="panel">
+<h1>{{username}}</h1>
+<!--<p class="actions"><a href="/friend.add/lydon" class="post_act bh" token="499f85eb"></a>-->
+{% ifequal user.username username %}
+  {% else %}
+    {% if is_friend %}
+      <a href="/friends/{{ user.username }}/" class="post_act bh">
+查看{{username}} </a> 
+    {% else %}
+      <a href="/friend/add/?username={{ username }}" class="post_act bh">
+       关注此人</a> 
+    {% endif %}
+{% endifequal %}
+</div>
+</div> 
+{% include "bookmark_list.html"%}
+</div></div></div></div></div></div> </div>
+{%endblock%}

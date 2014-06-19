@@ -1,0 +1,34 @@
+<style type="text/css">
+#lab{
+margin-left:1.3cm;
+font-size:18px;
+}
+#formbutton1{height:23px;
+padding:0 1.5em;
+border:1px solid;
+border-color:#66acff #094fa1 #094fa1 #66acff;
+background:#2680e9;
+color:#fff;
+letter-spacing:.3em;
+cursor:pointer;
+line-height:23px;
+margin-left:1.3cm;
+}
+#kuang{
+margin-left:1.3cm;
+size:100px;
+}
+</style>
+<form id="save-form" method="post" action="/save/" class="lf">
+{% csrf_token%}
+<p><label  id="lab" class="label_input" for="id_url">网址:</label>
+<div id="kuang">{{form.url}}</div></p>
+<p><label  id="lab" class="label_input" for="id_title">标题:</label>
+<div id="kuang">{{form.title}}</div></p>
+<p><label  id="lab" class="label_input" for="id_tag">标签:</label>
+<div id="kuang">{{form.tag}}</div></p>
+<p><label  id="lab" class="label_input" for="id_share">共享:</label>
+<div id="kuang">{{form.share}}</div></p>
+<!--{{ form.as_p }}-->
+<input type="submit" value="save"  id="formbutton1"/>
+</form>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+<h2>Tag Clound</h2>
+{% endblock %}
+
+{% block content %}
+{% if tags %}
+{% for tag in tags %}
+<li><a href="{{tag.content}}">{{tag.content}}</a> X {{tag.count}}</li>
+{% endfor %}
+{% else %}
+no tags.
+{% endif %}
+{% endblock%}

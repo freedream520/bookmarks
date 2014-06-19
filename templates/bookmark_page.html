@@ -1,0 +1,61 @@
+<style type="text/css">
+#li-f{
+height:22px;
+margin-left:1.3cm;
+font-size:24px;
+}
+
+#li-i {
+border-bottom:1px dashed #cccccc;    
+margin-left:1.3cm;
+margin-right:55px;     
+font-size:24px;
+height:30px;  
+}
+strong{
+height:22px;
+margin-left:1.3cm;
+font-size:24px;
+}
+#shux{
+height:22px;
+margin-left:1.3cm;
+font-size:16px;
+}
+.nos ul{
+list-style:none;
+}
+</style>
+
+{% extends "base.html" %}
+{% load comments %}
+{% block title %}
+<div id="sign-in" class="ui-roundedbox">
+<div class="ui-roundedbox-corner ui-roundedbox-tl">
+<div class="ui-roundedbox-corner ui-roundedbox-tr">
+<div class="ui-roundedbox-corner ui-roundedbox-bl">
+<div class="ui-roundedbox-corner ui-roundedbox-br">
+<div class="ui-roundedbox-content"> 
+<h2>Bookmark:{{ shared_bookmark.bookmark.title }}</h2>
+{% endblock %}
+{% block content %}
+  Posted By:
+  <a href="/user/{{ shared_bookmark.bookmark.uname.username }}/"
+     class="username">
+    {{ shared_bookmark.bookmark.uname.username }}</a> |
+  <span class="vote-count">Votes: {{ shared_bookmark.votes }}</span>
+
+  <h2>Comments</h2>
+  {% get_comment_count for bookmark_base.shareitem shared_bookmark.id as comment_count %} 
+  {% get_comment_list for bookmark_base.shareitem shared_bookmark.id as comment_list %} 
+
+  {% for comment in comment_list %}
+    <div class="comment">
+      <p><b>{{ comment.user.username }}</b> said:</p>
+      {{ comment.comment|urlizetrunc:40|linebreaks }}
+    </div>
+  {% endfor %}
+  <p>Number of comments: {{ comment_count }}</p>
+
+  {% render_comment_form for bookmark_base.shareitem shared_bookmark.id %} 
+{% endblock %}

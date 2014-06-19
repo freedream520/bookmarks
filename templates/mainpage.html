@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+
+{% block content %}
+{% if user.username %}
+<p>{{user.username}} , welcome to yourmarks!
+Here you can store you bookmarks anywhere and anytime!
+</p>
+{% else %}
+<p>you want to store bookmarks,please login first<a href="/login">login</a>
+</P>
+{% endif %}
+{% endblock %}
