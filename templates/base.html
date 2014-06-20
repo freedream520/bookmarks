@@ -1,70 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-<title>网络收藏夹 - yuermarks书签</title> 
-<meta name="description" content="yourmarks书签是免费的网址收藏夹，它可以帮助您收藏网址，并与朋友分享。"/> 
-<meta name="keywords" content="yourmarks,书签,网络,网址,收藏夹," />
-{% load staticfiles %}
-<link rel="stylesheet" href="/media/style.css" type="text/css">
-<script type="text/JavaScript" src="/media/jquery.js"></script>
-{% block external %}{% endblock %}
-<style type="text/css">
-div#container{
-width:600px;
-margin:0 auto;
-}
-div#sign-in{
-width:800px;
-margin:0 auto;
-}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>网络收藏夹 - yuermarks书签</title>
+    <meta name="description" content="yourmarks书签是免费的网址收藏夹，它可以帮助您收藏网址，并与朋友分享。"/>
+    <meta name="keywords" content="yourmarks,书签,网络,网址,收藏夹,"/>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}style.css" type="text/css"/>
+    <script type="text/JavaScript" src="{{ STATIC_URL }}jquery.js"></script>
+    {% block external %}{% endblock %}
+    <style type="text/css">
+        div#container{
+        width:600px;
+        margin:0 auto;
+        }
+        div#sign-in{
+        width:800px;
+        margin:0 auto;
+        }
+        <body class="narrowlook beforelogin">
+    </style>
 </head>
-<body class="narrowlook beforelogin">
-</style>
 <div id="container">
-<div id="header">
-<h1>
-<a href="/"><img src="/media/img/bg/1.png"  /></a></h1>
-<div id="navigation" class="ui-rounderbox">
-<div class="ui-roundedbox-corner ui-roundedbox-tl">
-<div class="ui-roundedbox-corner ui-roundedbox-tr">
-<div class="ui-roundedbox-corner ui-roundedbox-bl">
-<div class="ui-roundedbox-corner ui-roundedbox-br">
-<div class="ui-roundedbox-content">
-<ul>													
-{% if user.is_authenticated %}
-<li><a href="/">首页</a></li>
-<li><a href="/user/{{user.username}}/">{{user.username}}</a></li>
-<li><a href="/friends/{{user.username}}/">好友</a></li>
-<li><a href="/save">收藏新网址</a></li>
-<li><a href="/search">搜索</a><li>
-<li><a href="/logout">退出</a><li>
-{% else %}
-<li><a href="/">首页</a></li>
-<li><a href="/search">搜索</a><li>
-<li><a href="/login">登录</a></li>
-<li><a href="/registe">注册</a><li>
-{% endif %}
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div id="header">
+        <h1>
+            <a href="/"><img src="{{ STATIC_URL }}img/bg/1.png"/></a></h1>
+
+        <div id="navigation" class="ui-rounderbox">
+            <div class="ui-roundedbox-corner ui-roundedbox-tl">
+                <div class="ui-roundedbox-corner ui-roundedbox-tr">
+                    <div class="ui-roundedbox-corner ui-roundedbox-bl">
+                        <div class="ui-roundedbox-corner ui-roundedbox-br">
+                            <div class="ui-roundedbox-content">
+                                <ul>
+                                    {% if user.is_authenticated %}
+                                    <li><a href="/">首页</a></li>
+                                    <li><a href="/user/{{user.username}}/">{{user.username}}</a></li>
+                                    <li><a href="/friends/{{user.username}}/">好友</a></li>
+                                    <li><a href="/save">收藏新网址</a></li>
+                                    <li><a href="/search">搜索</a>
+                                    <li>
+                                    <li><a href="/logout">退出</a>
+                                    <li>
+                                        {% else %}
+                                    <li><a href="/">首页</a></li>
+                                    <li><a href="/search">搜索</a>
+                                    <li>
+                                    <li><a href="/login">登录</a></li>
+                                    <li><a href="/registe">注册</a>
+                                    <li>
+                                        {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% block title %}{% endblock %}
 {% block content %}{% endblock%}
 <style type="text/css">
-#footer{
-text-align: center;
-margin: 30px 0 0 0;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-font-size:17px;
-}
+    #footer{
+    text-align: center;
+    margin: 30px 0 0 0;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    font-size:17px;
+    }
 </style>
 <div id="footer">
-&copy; 2011 yuermarks
+    &copy; 2011 yuermarks
 </div>
 </body>
+</html>
