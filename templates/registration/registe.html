@@ -10,6 +10,7 @@
                         {% endblock %}
                         {% block content %}
                         <form method="post" action="." id="register" class="vf lf">
+                        {% csrf_token %}
                         <p><label class="label_input" for="id_username">用户名:</label>
                             {{ form.username}}</p>
 
@@ -21,7 +22,7 @@
 
                         <p><label class="label_input" for="id_password">确认密码：</label>
                             {{ form.password2 }}</p>
-                        <input type="submit" value="registe" class="formbutton"/>
+                        <input type="submit" value="register" class="formbutton"/>
                         </form>
                     </div>
                 </div>

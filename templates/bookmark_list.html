@@ -38,7 +38,7 @@ list-style:none;
 {{bookmark.title}}</a>
 {% if show_edit%}
 <a href="/save/?url={{ bookmark.link.url|urlencode }}" class="edit">
-<img class="like_in" title="edit " src="/media/img/edit.gif"></a>
+<img class="like_in" title="edit " src="{{ STATIC_URL }}img/edit.gif"></a>
 <a href="/delete/?id={{bookmark.id}}" class="delete">
 </a>
 {% endif %}

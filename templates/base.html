@@ -17,13 +17,12 @@
         width:800px;
         margin:0 auto;
         }
-        <body class="narrowlook beforelogin">
     </style>
 </head>
+<body class="narrowlook beforelogin">
 <div id="container">
     <div id="header">
-        <h1>
-            <a href="/"><img src="{{ STATIC_URL }}img/bg/1.png"/></a></h1>
+        <h1><a href="/"><img src="{{ STATIC_URL }}img/bg/1.png"/></a></h1>
 
         <div id="navigation" class="ui-rounderbox">
             <div class="ui-roundedbox-corner ui-roundedbox-tl">
@@ -37,17 +36,13 @@
                                     <li><a href="/user/{{user.username}}/">{{user.username}}</a></li>
                                     <li><a href="/friends/{{user.username}}/">好友</a></li>
                                     <li><a href="/save">收藏新网址</a></li>
-                                    <li><a href="/search">搜索</a>
-                                    <li>
-                                    <li><a href="/logout">退出</a>
-                                    <li>
+                                    <li><a href="/search">搜索</a></li>
+                                    <li><a href="/logout">退出</a></li>
                                         {% else %}
                                     <li><a href="/">首页</a></li>
-                                    <li><a href="/search">搜索</a>
-                                    <li>
+                                    <li><a href="/search">搜索</a></li>
                                     <li><a href="/login">登录</a></li>
-                                    <li><a href="/registe">注册</a>
-                                    <li>
+                                    <li><a href="/registe">注册</a></li>
                                         {% endif %}
                                 </ul>
                             </div>
@@ -59,7 +54,7 @@
     </div>
 </div>
 {% block title %}{% endblock %}
-{% block content %}{% endblock%}
+{% block content %}{% endblock %}
 <style type="text/css">
     #footer{
     text-align: center;

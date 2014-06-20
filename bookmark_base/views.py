@@ -32,8 +32,11 @@ def registe(request):
     return render_to_response('registe.html')
 
 
-def registe_successr(request):
-    return render_to_response('reg_success.html')
+def registe_success(request):
+    variables = RequestContext(request, {
+        'stub': 'stub'
+    })
+    return render_to_response('reg_success.html', variables)
 
 
 def adduser(request):

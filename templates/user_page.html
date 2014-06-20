@@ -1,7 +1,7 @@
  
 {% extends "base.html"%}
 {% block external%}
-<script type="text/javascript" src="/media/bk.js">
+<script type="text/javascript" src="{{ STATIC_URL }}bk.js">
 </script>
 {% endblock%}
 {%block title%}<div id="sign-in" class="ui-roundedbox">
@@ -15,7 +15,7 @@
 <div id="info">
 <div id="avatar">
 <a href="/user/{{user.username}}" title="">
-<img src="/media/img/touxiang.png" alt="" title="" /></a>
+<img src="{{ STATIC_URL }}img/touxiang.png" alt="" title="" /></a>
 </div>
 <div id="panel">
 <h1>{{username}}</h1>
