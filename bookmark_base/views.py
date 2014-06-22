@@ -4,13 +4,15 @@ from django.template import Context
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
-from django.contrib.auth import logout
+from django.contrib.auth import login, authenticate, logout
 from bookmark_base.forms import *
 from bookmark_base.models import *
 from django.shortcuts import get_object_or_404
 from django.core.context_processors import csrf
+import json
 from copy import deepcopy
 from django.contrib.auth.decorators import login_required
+
 
 
 def mainpage(request, username):
@@ -26,6 +28,7 @@ def home(request):
         'show_user': True
     })
     return render_to_response('home.html', variables)
+
 
 
 def registe(request):
@@ -285,7 +288,6 @@ def friendspage(request, username):
         'show_user': True
     })
     return render_to_response('friends.html', variables)
-
 
 def addfriend(request):
     if 'username' in request.GET:

@@ -23,7 +23,7 @@ class Tag(models.Model):
     book = models.ManyToManyField(Bookmark)
 
     def __unicode__(self):
-        return content
+        return self.content
 
 
 class ShareItem(models.Model):
