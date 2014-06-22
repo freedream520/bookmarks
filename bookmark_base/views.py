@@ -1,18 +1,13 @@
 # Create your views here.
-from django.template.loader import get_template
-from django.template import Context
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
-from django.contrib.auth import login, authenticate, logout
-from bookmark_base.forms import *
-from bookmark_base.models import *
+from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404
 from django.core.context_processors import csrf
-import json
-from copy import deepcopy
-from django.contrib.auth.decorators import login_required
 
+from accounts.forms import *
+from bookmark_base.models import *
 
 
 def mainpage(request, username):
@@ -28,37 +23,6 @@ def home(request):
         'show_user': True
     })
     return render_to_response('home.html', variables)
-
-
-
-def registe(request):
-    return render_to_response('registe.html')
-
-
-def registe_success(request):
-    variables = RequestContext(request, {
-        'stub': 'stub'
-    })
-    return render_to_response('reg_success.html', variables)
-
-
-def adduser(request):
-    if request.method == 'POST':
-        form = RegisteForm(request.POST)
-        if form.is_valid():
-            user = User.objects.create_user(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password1'],
-                email=form.cleaned_data['email']
-            )
-            return HttpResponseRedirect('/registe_success')
-    else:
-        form = RegisteForm()
-        variables = RequestContext(request, {
-            'form': form
-        })
-    return render_to_response('registration/registe.html', variables)
-
 
 def logoutpage(request):
     logout(request)
@@ -139,24 +103,7 @@ def addmarks(request):
         return render_to_response('bookmark_save.html', variables)
 
 
-def userpage(request, username):
-    user = get_object_or_404(User, username=username)
-    bookmarks = user.bookmark_set.order_by('-id')
-    if request.user.is_authenticated():
-        is_friend = Freindship.objects.filter(
-            fromuser=request.user,
-            touser=user)
-    else:
-        is_friend = False
-    variables = RequestContext(request, {
-        'bookmarks': bookmarks,
-        'username': username,
-        'show_tags': True,
-        'show_user': False,
-        'show_edit': username == request.user.username,
-        'is_friend': is_friend,
-    })
-    return render_to_response('user_page.html', variables)
+
 
 
 def bookmarkpage(request, bookmark_id):

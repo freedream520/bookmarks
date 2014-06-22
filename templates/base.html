@@ -33,16 +33,16 @@
                                 <ul>
                                     {% if user.is_authenticated %}
                                     <li><a href="/">首页</a></li>
-                                    <li><a href="/user/{{user.username}}/">{{user.username}}</a></li>
+                                    <li><a href="{% url 'accounts:user_page' user.username %}">{{user.username}}</a></li>
                                     <li><a href="/friends/{{user.username}}/">好友</a></li>
                                     <li><a href="/save">收藏新网址</a></li>
                                     <li><a href="/search">搜索</a></li>
-                                    <li><a href="/logout">退出</a></li>
+                                    <li><a href="{% url 'accounts:logout' %}">退出</a></li>
                                         {% else %}
                                     <li><a href="/">首页</a></li>
                                     <li><a href="/search">搜索</a></li>
-                                    <li><a href="/login">登录</a></li>
-                                    <li><a href="/registe">注册</a></li>
+                                    <li><a href="{% url 'accounts:login' %}">登录</a></li>
+                                    <li><a href="{% url 'accounts:register' %}">注册</a></li>
                                         {% endif %}
                                 </ul>
                             </div>
