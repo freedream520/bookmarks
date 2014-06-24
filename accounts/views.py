@@ -9,7 +9,8 @@ from bookmark_base.models import Freindship
 CODE_LOGIN_SUCCESS = 1
 CODE_LOGIN_NO_USER = CODE_LOGIN_SUCCESS + 1
 CODE_LOGIN_ERROR_USER = CODE_LOGIN_NO_USER + 1
-
+CODE_REGISTER_SUCCESS = CODE_LOGIN_ERROR_USER + 1
+CODE_REGISTER_ERROR = CODE_REGISTER_SUCCESS + 1
 
 def login_account(request):
     username = request.POST['username']
@@ -48,6 +49,20 @@ def add_user(request):
             'form': form
         })
     return render_to_response('registration/registe.html', variables)
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.post['email']
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            email=email
+        )
+        return HttpResponse(json.dump({'code': CODE_REGISTER_SUCCESS, 'msg': 'register success'}))
+    else:
+        return HttpResponse(json.dump({'code': CODE_REGISTER_ERROR, 'msg': 'register error'}))
 
 
 def logout_page(request):
