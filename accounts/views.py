@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from accounts.forms import *
@@ -12,19 +13,25 @@ CODE_LOGIN_ERROR_USER = CODE_LOGIN_NO_USER + 1
 CODE_REGISTER_SUCCESS = CODE_LOGIN_ERROR_USER + 1
 CODE_REGISTER_ERROR = CODE_REGISTER_SUCCESS + 1
 
-def login_account(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            return HttpResponse(json.dump({'code': CODE_LOGIN_SUCCESS}))
+def login(request):
+    if request.user_agent.is_mobile:
+        if request.method == 'GET':
+            context = RequestContext(request, {
+                'form': AuthenticationForm(request)
+            })
+            return render_to_response('registration/mobile_login.html', context)
         else:
-            return HttpResponse(json.dump({'code': CODE_LOGIN_ERROR_USER}))
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                response = HttpResponse(json.dumps({'code': CODE_LOGIN_SUCCESS}))
+                response.set_cookie("user", user.pk)
+                return response
+            else:
+                return HttpResponse(json.dumps({'code': CODE_LOGIN_NO_USER}))
     else:
-        return HttpResponse(json.dump({'code': CODE_LOGIN_NO_USER}))
-
+        return HttpResponseRedirect('/accounts/pc_login')
 
 def register_success(request):
     variables = RequestContext(request, {
@@ -60,9 +67,13 @@ def register(request):
             password=password,
             email=email
         )
-        return HttpResponse(json.dump({'code': CODE_REGISTER_SUCCESS, 'msg': 'register success'}))
+        return HttpResponse(json.dumps({'code': CODE_REGISTER_SUCCESS, 'msg': 'register success'}))
     else:
-        return HttpResponse(json.dump({'code': CODE_REGISTER_ERROR, 'msg': 'register error'}))
+        form = RegisteForm()
+        variables = RequestContext(request, {
+            'form': form
+        })
+    return render_to_response('registration/registe.html', variables)
 
 
 def logout_page(request):

@@ -1,0 +1,5 @@
+<form method="post" action="." id="login" class="vf lf">{% csrf_token %}
+    <p>{{ form.username }}</p>
+    <p>{{ form.password }}</p>
+    <input type="submit" class="formbutton" value="login" />
+</form>

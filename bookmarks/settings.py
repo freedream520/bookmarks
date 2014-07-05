@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'bookmark_base',
     'photos',
     'accounts',
+    'django_user_agents',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 )
 
 ROOT_URLCONF = 'bookmarks.urls'

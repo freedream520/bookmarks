@@ -1,8 +1,7 @@
 import os
 import sys
 
-sys.path.append('/home/xinchao')
-sys.path.append('/home/xinchao/bookmarks')
+sys.path.append('c:/wamp/www/bookmarks')
 
 os.environ['DJANGO_SETTINGS_MODULE']='bookmarks.settings'
 
