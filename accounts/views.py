@@ -6,6 +6,7 @@ from django.template import RequestContext
 from accounts.forms import *
 from django.shortcuts import render, render_to_response, get_object_or_404
 from bookmark_base.models import Freindship
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 CODE_LOGIN_SUCCESS = 1
 CODE_LOGIN_NO_USER = CODE_LOGIN_SUCCESS + 1
@@ -13,25 +14,23 @@ CODE_LOGIN_ERROR_USER = CODE_LOGIN_NO_USER + 1
 CODE_REGISTER_SUCCESS = CODE_LOGIN_ERROR_USER + 1
 CODE_REGISTER_ERROR = CODE_REGISTER_SUCCESS + 1
 
+@csrf_exempt
 def login(request):
-    if request.user_agent.is_mobile:
-        if request.method == 'GET':
-            context = RequestContext(request, {
-                'form': AuthenticationForm(request)
-            })
-            return render_to_response('registration/mobile_login.html', context)
-        else:
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                response = HttpResponse(json.dumps({'code': CODE_LOGIN_SUCCESS}))
-                response.set_cookie("user", user.pk)
-                return response
-            else:
-                return HttpResponse(json.dumps({'code': CODE_LOGIN_NO_USER}))
+    if request.method == 'GET':
+        context = RequestContext(request, {
+            'form': AuthenticationForm(request)
+        })
+        return render_to_response('registration/mobile_login.html', context)
     else:
-        return HttpResponseRedirect('/accounts/pc_login')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            response = HttpResponse(json.dumps({'code': CODE_LOGIN_SUCCESS}))
+            response.set_cookie("user", user.pk)
+            return response
+        else:
+            return HttpResponse(json.dumps({'code': CODE_LOGIN_NO_USER}))
 
 def register_success(request):
     variables = RequestContext(request, {
